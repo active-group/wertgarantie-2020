@@ -378,7 +378,7 @@
 255 255 1 -1 0 1 #"\0"
 0 75 14 #"Cascadia Code\0"
 0.0 20 90 -1 90 -1 3 -1 0 1 0 1 0 0 0.0 0.0 0.0 0.0 0.0 0.0 0 0 0 255
-255 255 1 -1           0 759 0 4 3 94
+255 255 1 -1           0 769 0 4 3 94
 (4
  #";; Die ersten drei Zeilen dieser "
  #"Datei wurden von DrRacket eingef\303\274gt. Sie enthalten Metadaten"
@@ -4258,6 +4258,17 @@
 0 0 24 3 2 #") "
 0 0 19 3 13 #"\"quadratisch\""
 0 0 24 3 4 #"))))"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 17 3 24 #";;; Funktion y = 3*x + 5"
+0 0 24 29 1 #"\n"
+0 0 17 3 58
+#";; Berechnet zu gegebenen x-Wert den entsprechenden y-Wert"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
 0 0 24 29 1 #"\n"
 0 0 24 29 1 #"\n"
 0 0 24 29 1 #"\n"
