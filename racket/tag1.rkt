@@ -378,7 +378,7 @@
 255 255 1 -1 0 1 #"\0"
 0 75 14 #"Cascadia Code\0"
 0.0 20 90 -1 90 -1 3 -1 0 1 0 1 0 0 0.0 0.0 0.0 0.0 0.0 0.0 0 0 0 255
-255 255 1 -1           0 435 0 4 3 94
+255 255 1 -1           0 434 0 4 3 94
 (4
  #";; Die ersten drei Zeilen dieser "
  #"Datei wurden von DrRacket eingef\303\274gt. Sie enthalten Metadaten"
@@ -3925,8 +3925,8 @@
 0 0 17 3 53
 #";; image-width:  Bekommt Bild und gibt Breite zur\303\274ck"
 0 0 24 29 1 #"\n"
-0 0 17 3 44 #";; image-height: Bekommt Bild und gibt H\303\266he"
-0 0 17 3 8 #" zur\303\274ck"
+0 0 17 3 52
+#";; image-height: Bekommt Bild und gibt H\303\266he zur\303\274ck"
 0 0 24 29 1 #"\n"
 0 0 24 29 1 #"\n"
 0 0 24 29 1 #"\n"
