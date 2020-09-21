@@ -164,6 +164,12 @@
   (lambda (parrot)
     (make-parrot (parrot-weight parrot) "")))
 
+;; UNGETESTET!
+(define parrot-alive?
+  (lambda (parrot)
+    (not (string=? "" (parrot-sentence parrot)))))
+    
+
 
 ;;;; GEMISCHTE DATEN
 ;; Ein Tier (animal) ist eines der folgenden
@@ -193,9 +199,112 @@
 ;;; ÜBUNG
 
 ;; Ist das gegebene Tier lebendig?
-(: animal-alive? (... -> ...))
+(: animal-alive? (animal -> boolean))
 
-(: dillo-alive? (... -> ...))
+(check-expect (animal-alive? dillo1)
+              #t)
+(check-expect (animal-alive? dillo2)
+              #f)
+(check-expect (animal-alive? parrot1)
+              #t)
+(check-expect (animal-alive? (make-parrot 2000 ""))
+              #f)
+
+
+(define animal-alive?
+  (lambda (animal)
+    (cond
+      ((dillo? animal) (dillo-alive? animal))
+      ((parrot? animal) (parrot-alive? animal)))))
+
+
+;;;;; Daten mit Selbstbezug
+
+
+;; Ein Bach hat folgende Eigenschaften
+;; - Ursprungsort
+;; -> zusammengesetzte Daten
+
+(define-record-functions bach
+  make-bach
+  bach?
+  (bach-ursprung string))
+
+;; Ein Zusammentreffen zweier Flüsse besteht aus
+;; - Ort
+;; - Hauptfluss
+;; - Nebenfluss
+
+(define-record-functions zusammentreffen
+  make-zusammentreffen
+  zusammentreffen?
+  (zusammentreffen-ort string)
+  (zusammentreffen-haupt fluss)
+  (zusammentreffen-neben fluss))
+
+
+;;; Ein Fluss ist eins der folgenden:
+;; - Bach
+;; - Zusammentreffen zweier Flüsse
+;; -> Gemischte Daten
+
+(define fluss
+  (signature (mixed zusammentreffen bach)))
+
+(define eschach (make-bach "Heimliswald"))
+(define prim (make-bach "Dreifaltigkeitsberg"))
+(define schlichem (make-bach "Tieringen"))
+
+(define neckar (make-zusammentreffen "Rottweil"
+                                     prim
+                                     eschach))
+
+(define neckar2 (make-zusammentreffen "Epfendorf"
+                                      neckar
+                                      schlichem))
+
+;;; Fließt der Fluss durch den angegebenen Ort?
+(: fließt-durch? (fluss string -> boolean))
+
+(check-expect (fließt-durch? eschach "Heimliswald")
+              #t)
+(check-expect (fließt-durch? eschach "Rottweil")
+              #f)
+(check-expect (fließt-durch? neckar "Rottweil")
+              #t)
+(check-expect (fließt-durch? neckar "Heimliswald")
+              #t)
+(check-expect (fließt-durch? neckar "Tieringen")
+              #f)
+(check-expect (fließt-durch? neckar2 "Epfendorf")
+              #t)
+
+;;; Schablone
+#;(define fließt-durch?
+  (lambda (fluss ort)
+    (cond
+      ((bach? fluss) ...)
+      ((zusammentreffen? fluss) ...))))
+                                      
+(define fließt-durch?
+  (lambda (fluss ort)
+    (cond
+      ((bach? fluss) (string=? ort (bach-ursprung fluss)))
+      ((zusammentreffen? fluss)
+       (or
+        (string=? ort (zusammentreffen-ort fluss))
+        (fließt-durch? (zusammentreffen-haupt fluss)
+                       ort)
+        (fließt-durch? (zusammentreffen-neben fluss)
+                       ort))))))
+  
+                                     
+
+
+
+
+
+
 
 
 
