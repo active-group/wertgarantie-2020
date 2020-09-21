@@ -101,8 +101,13 @@
 
 (define-record-functions dillo
   make-dillo
+  dillo?                    ;; Prädikat
   (dillo-alive? boolean)
   (dillo-weight natural))
+
+
+;; Neu: Prädikat!
+(: dillo? (any -> boolean))
 
 (define dillo1 (make-dillo #t 20000)) ; Gürteltier, lebendig, 20 kg
 (define dillo2 (make-dillo #f 15000)) ; Gürteltier, tot, 15 kg
@@ -143,6 +148,7 @@
 
 (define-record-functions parrot
   make-parrot
+  parrot?
   (parrot-weight natural)
   (parrot-sentence string))
 
@@ -150,8 +156,46 @@
 (define parrot2 (make-parrot 4000 "Ich grüße Sie")) ; höflicher Papagei, 4 kg
 
 
+(: run-over-parrot (parrot -> parrot))
+(check-expect (run-over-parrot parrot1)
+              (make-parrot 1000 ""))
+
+(define run-over-parrot
+  (lambda (parrot)
+    (make-parrot (parrot-weight parrot) "")))
 
 
+;;;; GEMISCHTE DATEN
+;; Ein Tier (animal) ist eines der folgenden
+;; - Gürteltier
+;; - Papagei
+;; ("ist eines der folgenden" -> gemischte Daten)
+
+(define animal
+  (signature (mixed dillo parrot)))
+
+
+
+;; Wir wollen Tiere überfahren
+;; run-over-animal
+(: run-over-animal (animal -> animal))
+(check-expect (run-over-animal dillo1)
+              (make-dillo #f 20000))
+(check-expect (run-over-animal parrot1)
+              (make-parrot 1000 ""))
+
+(define run-over-animal
+  (lambda (animal)
+    (cond
+      ((parrot? animal) (run-over-parrot animal))
+      ((dillo? animal) (run-over-dillo animal)))))
+
+;;; ÜBUNG
+
+;; Ist das gegebene Tier lebendig?
+(: animal-alive? (... -> ...))
+
+(: dillo-alive? (... -> ...))
 
 
 
