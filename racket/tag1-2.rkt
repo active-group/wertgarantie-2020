@@ -26,14 +26,14 @@
 (: time-hour   (time -> natural))
 (: time-minute (time -> natural))
 
-; Vergleich Java
+; Vergleich mit Java
 ;class Time {
 ;            private integer minute;
 ;
 ;                    public getMinute()
 ;                       { return minute}
 ;                    }
-;Getter-Funktion
+; Getter-Funktion
 ;(define time-minute
 ;  (lambda (time)
 ;    (get-second-element time)))
@@ -125,8 +125,16 @@
         (make-dillo #f (dillo-weight dillo))
         dillo)))
 
+;;; Vereinfachung
+#;(define run-over-dillo
+  (lambda (dillo)
+    (make-dillo #f (dillo-weight dillo))))
 
 
+;;; ÜBUNG
+;; Weiteres Tier:
+;; - 2 Eigenschaften: Gewicht und "freie Wahl"
+;; - Funktion, die das Tier überfährt
 
 
 
