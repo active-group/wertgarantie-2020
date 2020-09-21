@@ -137,6 +137,19 @@
 ;; - Funktion, die das Tier überfährt
 
 
+;; Ein Papagei hat folgende Eigenschaften:
+;; - Gewicht in Gramm
+;; - Satz, den er sagt
+
+(define-record-functions parrot
+  make-parrot
+  (parrot-weight natural)
+  (parrot-sentence string))
+
+(define parrot1 (make-parrot 1000 "Mein Schatz!!!")) ; Piratenpapagei, 1 kg
+(define parrot2 (make-parrot 4000 "Ich grüße Sie")) ; höflicher Papagei, 4 kg
+
+
 
 
 
