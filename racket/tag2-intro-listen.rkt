@@ -388,13 +388,12 @@
  #";; \303\274ber die Sprachebene dieser Datei in einer Form, die DrRac"
  #"ket verarbeiten kann."
 ) 0 0 4 29 1 #"\n"
-0 0 4 3 305
+0 0 4 3 205
 (6
  #"#reader(lib \"beginner-reader.rkt\" \"deinprogramm\" \"sdp\")((modna"
- #"me tag2-intro-listen) (read-case-sensitive #f) (teachpacks ((lib \"i"
- #"mage.rkt\" \"teachpack\" \"deinprogramm\" \"sdp\"))) (deinprogramm-s"
- #"ettings #(#f write repeating-decimal #f #t none explicit #f ((lib \""
- #"image.rkt\" \"teachpack\" \"deinprogramm\" \"sdp\")))))"
+ #"me tag2-intro-listen) (read-case-sensitive #f) (teachpacks ()) (dein"
+ #"programm-settings #(#f write repeating-decimal #f #t none explicit #"
+ #"f ())))"
 ) 0 0 4 29 1 #"\n"
 0 0 17 3 48 #";; Eine Liste von Zahlen ist eines der folgenden"
 0 0 24 29 1 #"\n"
