@@ -93,22 +93,36 @@
   (lambda (liste)
     (my-filter even? liste)))
 
+;; Entscheidet ob eine Zahl durch 3 teilbar ist
+(: teilbar-durch-3? (integer -> boolean))
+(check-expect (teilbar-durch-3? 2) #f)
+(check-expect (teilbar-durch-3? 9) #t)
 (define teilbar-durch-3?
   (lambda (zahl)
     (= (remainder zahl 3)
        0)))
 
-
+;;; Filtert alle Zahlen einer Liste, die teilbar durch 3 sind
+(: teilbar-durch-3 ((list-of integer) -> (list-of integer)))
+(check-expect (teilbar-durch-3 liste5)
+              (list 3 6 9))
 (define teilbar-durch-3
   (lambda (liste)
     (my-filter teilbar-durch-3? liste)))
 
+;; Ist das gegebene Wort kurz? (d. h. 3 oder weniger Buchstaben)
+(: kurzes-wort? (string -> boolean))
+(check-expect (kurzes-wort? "bla") #t)
+(check-expect (kurzes-wort? "langes Wort") #f)
 (define kurzes-wort?
   (lambda (wort)
     (< (string-length wort)
        4)))
 
+;; Filtert kurze Worte (<= 3 Buchstaben)
 (: kurze-worte ((list-of string) -> (list-of string)))
+(check-expect (kurze-worte (list "hallo" "wie" "gehts" "so"))
+              (list "wie" "so"))                           
 (define kurze-worte
   (lambda (liste)
     (my-filter kurzes-wort? liste)))
