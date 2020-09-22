@@ -299,15 +299,18 @@
                        ort))))))
   
                                      
+;;; TAG 2
+
+;; Wiederholung Records / zusammengesetzte Daten
+(define-record-functions auto
+  make-auto
+  auto?
+  (auto-farbe string)
+  (auto-v natural))
 
 
-
-
-
-
-
-
-
-
+;;;ÜBUNG
+;; - Stelle den Datentyp "Bruch" dar
+;; - Schreibe eine Funktion, die zwei Brüche miteinander multipliziert
 
 
