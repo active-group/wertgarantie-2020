@@ -29,5 +29,70 @@
 
 (define liste1 (cons 5 empty))
 (define liste2 (cons 1 (cons 2 empty)))
+(define liste3 (cons 5 (cons 7 (cons 2 empty))))
+(define liste4 (cons 3 liste3))
 
+;; Addiere alle Zahlen einer Liste
+;; Rein: Eine Liste
+;; Raus: Eine Zahl
+(: list-sum (list-of-integer -> integer))
+
+(check-expect (list-sum liste1) 5)
+(check-expect (list-sum liste2) 3)
+(check-expect (list-sum liste3) 14)
+(check-expect (list-sum empty) 0)
+
+
+(define list-sum
+  (lambda (liste)
+    (cond
+      ((empty? liste) 0)
+      ((cons? liste)
+       (+ (first liste)
+          (list-sum (rest liste)))))))
+
+
+;; Auswertungsschritte einer rekursiven Funktion
+;(list-sum (5 7 2))
+;
+;cond -> cons?
+;
+;(+ (first (5 7 2))
+;   (list-sum (rest (5 7 2))))
+;
+;-->>
+;
+;(+ 5
+;   (list-sum (7 2)))
+;
+;--> nicht leer!
+;(+ 5
+;   (+ (first (7 2))
+;      (list-sum (rest (7 2)))))
+;  
+;-->
+;(+ 5
+;   (+ 7
+;      (list-sum (2))))
+;
+;--> (2) nicht leer!
+;
+;(+ 5
+;   (+ 7
+;      (+ (first (2))
+;         (list-sum (rest (2))))))
+;
+;(+ 5
+;   (+ 7
+;      (+ 2
+;         (list-sum empty))))
+;
+;--> () leere Liste!
+;      
+;(+ 5
+;   (+ 7
+;      (+ 2
+;         0)))
+;
+;---> 14
 
