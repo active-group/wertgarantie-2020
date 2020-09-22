@@ -132,6 +132,12 @@
 ;; Schreibe Funktion, die Liste filtert: Behalte alle #t-Werte
 ;; Implementiere mit filter / my-filter
 
+#;(check-expect (filter-true (list #t #f #t #t))
+              (list #t #t #t))
+
+
+
+
 
 
 
