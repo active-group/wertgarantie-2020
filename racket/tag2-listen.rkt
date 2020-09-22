@@ -38,6 +38,85 @@
 ;; ÜBUNGSAUFGABE
 ;; Filtere alle geraden Zahlen!
 ;; Hilfsfunktion "even?"
+;; Rein: Liste
+;; Raus: Liste
+
+(: evens ((list-of integer) -> (list-of integer)))
+(check-expect (evens liste3)
+              (list 2))
+(check-expect (evens liste5)
+              (list 2 4 6 8 10))
+(check-expect (evens empty) empty)
+
+(define evens
+  (lambda (liste)
+    (cond
+      ((empty? liste) empty)
+      ((cons? liste)
+       (if (even? (first liste))
+           (cons (first liste)
+                 (evens (rest liste)))
+           (evens (rest liste)))))))
+
+;;; Allgemeine Filterfunktion
+;; Bekommt:
+;; - Ein Prädikat,(das ist eine Funktion, die ein Element Eigenschaft überprüft)
+;; - Liste
+;; Zurück: Liste
+
+(: my-filter ((%a -> boolean) (list-of %a) -> (list-of %a)))
+
+(check-expect (my-filter even? (list 1 2 3 4 5 6))
+              (list 2 4 6))
+(check-expect (my-filter positive? (list 1 -5 -2 3 -5))
+              (list 1 3))
+
+(define my-filter
+  (lambda (predicate? liste)
+    (cond
+      ((empty? liste) empty)
+      ((cons? liste)
+       (if (predicate? (first liste))
+           (cons (first liste)
+                 (my-filter predicate? (rest liste)))
+           (my-filter predicate? (rest liste)))))))
+
+
+;; evens-2 mit Hilfe von my-filter
+(check-expect (evens-2 liste3)
+              (list 2))
+(check-expect (evens-2 liste5)
+              (list 2 4 6 8 10))
+(check-expect (evens-2 empty) empty)
+
+(define evens-2
+  (lambda (liste)
+    (my-filter even? liste)))
+
+(define teilbar-durch-3?
+  (lambda (zahl)
+    (= (remainder zahl 3)
+       0)))
+
+
+(define teilbar-durch-3
+  (lambda (liste)
+    (my-filter teilbar-durch-3? liste)))
+
+(define kurzes-wort?
+  (lambda (wort)
+    (< (string-length wort)
+       4)))
+
+(: kurze-worte ((list-of string) -> (list-of string)))
+(define kurze-worte
+  (lambda (liste)
+    (my-filter kurzes-wort? liste)))
+
+
+;;; ÜBUNGSAUFGABE
+;; Schreibe Funktion, die Liste filtert: Behalte alle #t-Werte
+;; Implementiere mit filter / my-filter
 
 
 
