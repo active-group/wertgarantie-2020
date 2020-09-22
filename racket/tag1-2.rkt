@@ -314,11 +314,13 @@
 ;; - Schreibe eine Funktion, die zwei Brüche miteinander multipliziert
 
 
-(define-record-functions bruch
+(define-record bruch
   make-bruch
   bruch?
   (bruch-zähler integer)
   (bruch-nenner natural))
+
+
 
 
 
