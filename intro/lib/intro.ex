@@ -103,8 +103,10 @@ defmodule Intro do
     @doc "Sind alle Rechnungen einer übergebenen Liste bezahlt?"
     @spec all_paid_go_twice?([Rechnung.t()]) :: boolean()
     def all_paid_go_twice?(rechnungen) do
-      # TODO
-      false
+      Enum.map(rechnungen, fn rechnung ->
+        rechnung.is_paid
+      end)
+      |> IO.inspect()
     end
   end
 end
