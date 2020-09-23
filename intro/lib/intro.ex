@@ -41,8 +41,8 @@ defmodule Intro do
       true
 
   """
-  @spec contains_do2(String.t()) :: boolean()
-  def contains_do2(text) do
+  @spec contains_do(String.t()) :: boolean()
+  def contains_do(text) do
     String.contains?(text, "do")
   end
 
