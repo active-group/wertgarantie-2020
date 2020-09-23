@@ -33,9 +33,12 @@ defmodule Intro do
 
   ## Examples
 
-  contains_do("Hallo") -> false
-  contains_do("Sudo") -> true
-  contains_do("do end concept") -> true
+      iex> Intro.contains_do("Hallo")
+      false
+      iex> Intro.contains_do("Sudo")
+      true
+      iex> contains_do("do end concept")
+      true
 
   """
   @spec contains_do(String.t()) :: boolean()
