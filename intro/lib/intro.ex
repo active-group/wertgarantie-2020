@@ -79,8 +79,8 @@ defmodule Intro do
     @spec all_paid?([Rechnung.t()]) :: boolean()
     def all_paid?(rechnungen) do
       List.foldl(
-        rechnungen
-        true
+        rechnungen,
+        true,
         &my_fold_function/2
       )
     end
