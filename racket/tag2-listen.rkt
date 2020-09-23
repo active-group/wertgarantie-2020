@@ -381,55 +381,22 @@
 255 255 1 -1 0 1 #"\0"
 0 75 10 #"Monospace\0"
 0.0 15 90 -1 90 -1 3 -1 0 1 0 1 0 0 0.0 0.0 0.0 0.0 0.0 0.0 0 0 0 255
-255 255 1 -1           0 2544 0 17 3 94
+255 255 1 -1           0 2507 0 4 3 94
 (4
  #";; Die ersten drei Zeilen dieser "
  #"Datei wurden von DrRacket eingef\303\274gt. Sie enthalten Metadaten"
-) 0 0 24 29 1 #"\n"
-0 0 17 3 83
+) 0 0 4 29 1 #"\n"
+0 0 4 3 83
 (5
  #";; \303\274ber die Sprachebene dieser Datei in einer Form, die DrRac"
  #"ket verarbeiten kann."
-) 0 0 24 29 1 #"\n"
-0 0 26 3 7 #"#reader"
-0 0 24 3 1 #"("
-0 0 14 3 3 #"lib"
-0 0 24 3 1 #" "
-0 0 19 3 20 #"\"vanilla-reader.rkt\""
-0 0 24 3 1 #" "
-0 0 19 3 14 #"\"deinprogramm\""
-0 0 24 3 1 #" "
-0 0 19 3 5 #"\"sdp\""
-0 0 24 3 3 #")(("
-0 0 14 3 7 #"modname"
-0 0 24 3 1 #" "
-0 0 14 3 11 #"tag2-listen"
-0 0 24 3 3 #") ("
-0 0 14 3 19 #"read-case-sensitive"
-0 0 24 3 1 #" "
-0 0 21 3 2 #"#f"
-0 0 24 3 3 #") ("
-0 0 14 3 10 #"teachpacks"
-0 0 24 3 6 #" ()) ("
-0 0 14 3 21 #"deinprogramm-settings"
-0 0 24 3 3 #" #("
-0 0 21 3 2 #"#f"
-0 0 24 3 1 #" "
-0 0 14 3 5 #"write"
-0 0 24 3 1 #" "
-0 0 14 3 17 #"repeating-decimal"
-0 0 24 3 1 #" "
-0 0 21 3 2 #"#f"
-0 0 24 3 1 #" "
-0 0 21 3 2 #"#t"
-0 0 24 3 1 #" "
-0 0 14 3 4 #"none"
-0 0 24 3 1 #" "
-0 0 14 3 8 #"explicit"
-0 0 24 3 1 #" "
-0 0 21 3 2 #"#f"
-0 0 24 3 6 #" ())))"
-0 0 24 29 1 #"\n"
+) 0 0 4 29 1 #"\n"
+0 0 4 3 198
+(6
+ #"#reader(lib \"vanilla-reader.rkt\" \"deinprogramm\" \"sdp\")((modnam"
+ #"e tag2-listen) (read-case-sensitive #f) (teachpacks ()) (deinprogram"
+ #"m-settings #(#f write repeating-decimal #f #t none explicit #f ())))"
+) 0 0 4 29 1 #"\n"
 0 0 24 3 1 #"("
 0 0 15 3 6 #"define"
 0 0 24 3 1 #" "
@@ -809,7 +776,7 @@
 0 0 17 3 11 #";; Bekommt:"
 0 0 24 29 1 #"\n"
 0 0 17 3 83
-(6
+(7
  #";; - Ein Pr\303\244dikat,(das ist eine Funktion, die ein Element Eig"
  #"enschaft \303\274berpr\303\274ft)"
 ) 0 0 24 29 1 #"\n"
@@ -1589,7 +1556,7 @@
 0 0 24 29 1 #"\n"
 0 0 24 29 1 #"\n"
 0 0 17 3 65
-(7
+(8
  #";;; \303\234BUNG Weiteres Tier: Gewicht und Funktion die es \303\274"
  #"berf\303\244hrt"
 ) 0 0 24 29 1 #"\n"
@@ -1880,7 +1847,7 @@
 0 0 24 29 1 #"\n"
 0 0 24 29 1 #"\n"
 0 0 17 3 69
-(8
+(9
  #";;; \303\234BUNG animal-alive? Gibt an, ob ein Tier am Leben ist ode"
  #"r nicht"
 ) 0 0 24 29 1 #"\n"
@@ -2110,7 +2077,7 @@
 0 0 24 29 1 #"\n"
 0 0 24 29 1 #"\n"
 0 0 17 3 69
-(9
+(10
  #";;; Schreibe ein Programm, das a"
  #"lle Zahlen einer Liste um 5 erh\303\266ht. "
 ) 0 0 24 29 1 #"\n"
@@ -2690,7 +2657,7 @@
 0 0 24 29 1 #"\n"
 0 0 24 29 1 #"\n"
 0 0 17 3 83
-(10
+(11
  #";;; list-fold bekommt eine Liste, und faltet diese mithilfe einer we"
  #"iteren Funktion"
 ) 0 0 24 29 1 #"\n"
@@ -2990,7 +2957,7 @@
 0 0 17 3 19 #";;;; \303\234BUNG (Bonus)"
 0 0 24 29 1 #"\n"
 0 0 17 3 55
-(11
+(12
  #";; Gib das gr\303\266\303\237te Elemen"
  #"t der gegebenen Liste zur\303\274ck"
 ) 0 0 24 29 1 #"\n"
