@@ -78,24 +78,28 @@ defmodule Intro do
     @doc "Sind alle Rechnungen einer übergebenen Liste bezahlt?"
     @spec all_paid?([Rechnung.t()]) :: boolean()
     def all_paid?(rechnungen) do
+      func = fn rechnung, zwischenergebnis ->
+        rechnung.is_paid and zwischenergebnis
+      end
+
       List.foldl(
         rechnungen,
         true,
-        &my_fold_function/2
+        &func/2
       )
     end
 
-    @doc """
+    # @doc """
 
-        iex> Intro.Rechnung.my_fold_function(%Intro.Rechnung{to: "", 200.0, false}, true)
-        false
-        iex> Intro.Rechnung.my_fold_function(%Intro.Rechnung{to: "", 200.0, true}, true)
-        true
+    #     iex> Intro.Rechnung.my_fold_function(%Intro.Rechnung{to: "", 200.0, false}, true)
+    #     false
+    #     iex> Intro.Rechnung.my_fold_function(%Intro.Rechnung{to: "", 200.0, true}, true)
+    #     true
 
-    """
-    @spec my_fold_function(Rechnung.t(), boolean()) :: boolean()
-    def my_fold_function(rechnung, zwischenergebnis) do
-      rechnung.is_paid and zwischenergebnis
-    end
+    # """
+    # @spec my_fold_function(Rechnung.t(), boolean()) :: boolean()
+    # def my_fold_function(rechnung, zwischenergebnis) do
+    #   rechnung.is_paid and zwischenergebnis
+    # end
   end
 end
