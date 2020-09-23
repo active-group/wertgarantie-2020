@@ -75,10 +75,10 @@ defmodule Intro do
 
     use QuickStruct, [to: String.t(), amount: float(), is_paid: boolean()]
 
-    def rechnung1(), do: make("info@example.com", 200, false)
-    def rechnung2(), do: make("tim@example.com", -10, true)
-    def rechnung3(), do: make("kaan@example.com", 10, false)
-    def rechnung4(), do: make("chef@example.com", 2000, true)
+    def rechnung1(), do: make("info@example.com", 200.0, false)
+    def rechnung2(), do: make("tim@example.com", -10.0, true)
+    def rechnung3(), do: make("kaan@example.com", 10.0, false)
+    def rechnung4(), do: make("chef@example.com", 2000.0, true)
 
 
 
