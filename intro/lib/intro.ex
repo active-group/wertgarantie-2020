@@ -54,7 +54,7 @@ defmodule Intro do
 
 
   def intro1 do
-    %Intro{key: 1, value: "Hallo"}
+    %Intro{key: "Blubb", value: "Hallo"}
   end
 
 end
