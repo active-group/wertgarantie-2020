@@ -25,6 +25,6 @@ defmodule Intro do
   @doc "Den Kreisumfang berechnen (zu einem gegebenen Radius, das heißt 2 * Pi * r)"
   @spec umfang(float()) :: float()
   def umfang(radius) do
-    2 * :math.pi radius
+    2 * :math.pi * radius
   end
 end
