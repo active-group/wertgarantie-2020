@@ -110,7 +110,7 @@ defmodule Intro do
     #   Enum.all?(result)
     # end
     def all_paid_go_twice?(rechnungen) do
-      Enum.all?(result, fn rechnung -> rechnung.is_paid end)
+      Enum.all?(rechnungen, fn rechnung -> rechnung.is_paid end)
     end
   end
 end
