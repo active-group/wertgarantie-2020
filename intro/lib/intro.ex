@@ -25,7 +25,7 @@ defmodule Intro do
   @doc "Den Kreisumfang berechnen (zu einem gegebenen Radius, das heißt 2 * Pi * r)"
   @spec umfang(float()) :: float()
   def umfang(radius) do
-    2 * :math.pi * radius
+    2 * :math.pi() * radius
   end
 
   @doc """
@@ -50,14 +50,10 @@ defmodule Intro do
 
   # Einfacher Key-Value-Struct
   defstruct [:key, :value]
-  @type t :: %Intro{key: integer(), value: String.t}
-
+  @type t :: %Intro{key: integer(), value: String.t()}
 
   @spec intro1 :: Intro.t()
   def intro1 do
     %Intro{key: 1, value: "Hallo"}
-
-
   end
-
 end
