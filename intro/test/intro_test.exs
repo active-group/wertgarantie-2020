@@ -1,6 +1,6 @@
 defmodule IntroTest do
   use ExUnit.Case
-  doctest Intro
+  #doctest Intro
 
   test "greets the world" do
     assert Intro.hello() == :world
@@ -21,9 +21,9 @@ defmodule IntroTest do
     assert_in_delta Intro.umfang(1), 2 * :math.pi, 0.00000001
   end
 
-  test "contains_do function" do
-    refute Intro.contains_do("Hallo")
-    assert Intro.contains_do("Sudo")
-    assert Intro.contains_do("do end concept")
+  test "contains_do2 function" do
+    refute Intro.contains_do2("Hallo")
+    assert Intro.contains_do2("Sudo")
+    assert Intro.contains_do2("do end concept")
   end
 end
