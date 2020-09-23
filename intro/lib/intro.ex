@@ -81,8 +81,8 @@ defmodule Intro do
       List.foldl(
         rechnungen,
         true,
-        fn rechnung, zwischenergebnis ->
-          rechnung.is_paid and zwischenergebnis
+        fn element, zwischenergebnis ->
+          element.is_paid and zwischenergebnis
         end
       )
     end
