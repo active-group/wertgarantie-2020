@@ -85,6 +85,13 @@ defmodule Intro do
       )
     end
 
+    @doc """
+
+        iex> Intro.Rechnung.my_fold_function(%Intro.Rechnung{to: "", 200.0, false}, true)
+        false
+
+
+    """
     @spec my_fold_function(Rechnung.t(), boolean()) :: boolean()
     def my_fold_function(rechnung, zwischenergebnis) do
       rechnung.is_paid and zwischenergebnis
