@@ -89,6 +89,8 @@ defmodule Intro do
 
         iex> Intro.Rechnung.my_fold_function(%Intro.Rechnung{to: "", 200.0, false}, true)
         false
+        iex> Intro.Rechnung.my_fold_function(%Intro.Rechnung{to: "", 200.0, true}, true)
+        true
 
 
     """
