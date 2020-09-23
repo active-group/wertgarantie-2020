@@ -54,6 +54,16 @@ defmodule Intro do
 
   @spec intro1 :: Intro.t()
   def intro1() do
-    %Intro{key: 1, value: "Hallo"}
+                 %Intro{
+
+
+
+
+                  key: 1,
+                   value: "Hallo"
+
+
+
+                  }
   end
 end
