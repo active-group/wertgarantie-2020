@@ -8,7 +8,7 @@
 
 ;; Fakultätsfunktion
 ;; gegeben Zahl n: Multiplizere n * (n-1) *(n-2) * ...* 1
-;;   falls n = 0. (factorial 0) = 1
+;; Für n = 0 gilt: die Fakultät von 0 ist 1.
 ;; Beispiel     5               5 * 4 * 3 * 2 * 1
 
 (: factorial (natural -> natural))
