@@ -59,7 +59,7 @@ defmodule Intro do
   # def intro1(), do: %Intro{key: 1, value: "Hallo"} # , do: ... ist abgekürzt für do ... end (nur eine Anweisung möglich)
   # def intro2(), do: %Intro{key: 2, value: "blubb"}
 
-  use QuickStruct, [key: integer(), value: String.t()]
+  use QuickStruct, key: integer(), value: String.t()
 
   def intro1(), do: make(1, "Hallo")
   def intro2(), do: make(2, "blubb")
@@ -73,15 +73,11 @@ defmodule Intro do
     - ob die Rechnung bezahlt wurde (boolean, true -> wurde bezahlt)
     """
 
-    use QuickStruct, [to: String.t(), amount: float(), is_paid: boolean()]
+    use QuickStruct, to: String.t(), amount: float(), is_paid: boolean()
 
     def rechnung1(), do: make("info@example.com", 200.0, false)
     def rechnung2(), do: make("tim@example.com", -10.0, true)
     def rechnung3, do: make("kaan@example.com", 10.0, false)
     def rechnung4(), do: make("chef@example.com", 2000.0, true)
-
-
-
   end
-
 end
