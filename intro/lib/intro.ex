@@ -37,7 +37,7 @@ defmodule Intro do
       false
       iex> Intro.contains_do("Sudo")
       true
-      iex> contains_do("do end concept")
+      iex> Intro.contains_do("do end concept")
       true
 
   """
