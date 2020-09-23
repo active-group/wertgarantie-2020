@@ -46,7 +46,15 @@ defmodule Intro do
     String.contains?(text, "do")
   end
 
-  defstruct [:key, :value]
+  # Zusammengesetzte Daten
 
+  # Einfacher Key-Value-Struct
+  defstruct [:key, :value]
+  @type t :: %Intro{key: integer(), value: String.t}
+
+
+  def intro1 do
+    %Intro{key: 1, value: "Hallo"}
+  end
 
 end
