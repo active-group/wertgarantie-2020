@@ -58,7 +58,7 @@ defmodule Intro do
 
   use QuickStruct, [key: integer(), value: String.t()]
 
-  def intro1(), do: make(1, "Hallo")
+  def intro1(), do: make("1", "Hallo")
   def intro2(), do: make(2, "blubb")
   def intro3(), do: %Intro{value: "3. Wert", key: 3}
 
