@@ -65,4 +65,8 @@ defmodule Intro do
   def intro2(), do: make(2, "blubb")
   def intro3(), do: %Intro{value: "3. Wert", key: 3}
 
+  defmodule Hallo do
+
+  end
+
 end
