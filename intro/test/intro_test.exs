@@ -4,5 +4,6 @@ defmodule IntroTest do
 
   test "greets the world" do
     assert Intro.hello() == :world
+    refute Intro.hello() == :world2
   end
 end
