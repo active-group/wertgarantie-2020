@@ -50,8 +50,8 @@ defmodule Intro do
 
   # Einfacher Key-Value-Struct
   defstruct [:key, :value]
-  @type t :: %Intro{key: integer(), value: String.t()}
   @enforce_keys [:key, :value]
+  @type t :: %Intro{key: integer(), value: String.t()}
 
   def intro1(), do: %Intro{key: 1, value: "Hallo"} # , do: ... ist abgekürzt für do ... end (nur eine Anweisung möglich)
   def intro2(), do: %Intro{key: 2, value: "blubb"}
