@@ -107,7 +107,7 @@ defmodule Intro do
         rechnung.is_paid
       end)
 
-      IO.inspect(result)
+      List.foldl(result, true, fn el result -> el and result)
     end
   end
 end
