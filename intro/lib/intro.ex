@@ -80,7 +80,7 @@ defmodule Intro do
     @spec all_paid?([Rechnung.t()]) :: boolean()
     def all_paid?(liste) do
 
-      #f
+      false
     end
 
 
