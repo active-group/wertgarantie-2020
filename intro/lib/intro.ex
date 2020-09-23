@@ -71,8 +71,6 @@ defmodule Intro do
     - einem Empfänger (E-Mailadresse als String)
     - einem Betrag (float)
     - ob die Rechnung bezahlt wurde (boolean, true -> wurde bezahlt)
-
-    siehe auch [Rechnung bei Wikipedia](https://de.wikipedia.org/wiki/Rechnung)
     """
   end
 
