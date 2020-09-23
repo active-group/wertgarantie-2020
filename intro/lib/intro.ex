@@ -77,7 +77,7 @@ defmodule Intro do
 
     def rechnung1(), do: make("info@example.com", 200.0, false)
     def rechnung2(), do: make("tim@example.com", -10.0, true)
-    def rechnung3(), do: make("kaan@example.com", 10.0, false)
+    def rechnung3, do: make("kaan@example.com", 10.0, false)
     def rechnung4(), do: make("chef@example.com", 2000.0, true)
 
 
