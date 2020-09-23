@@ -18,5 +18,6 @@ defmodule IntroTest do
   test "umfang berechnen" do
     assert_in_delta Intro.umfang(0.5), :math.pi, 0.00000001
     assert Intro.umfang(0) == 0
+    assert_in_delta Intro.umfang(1), 2 * :math.pi, 0.00000001
   end
 end
