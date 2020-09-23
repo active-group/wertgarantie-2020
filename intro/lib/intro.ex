@@ -50,12 +50,14 @@ defmodule Intro do
 
   # Einfacher Key-Value-Struct
   defstruct [:key, :value]
-  @type t :: %Intro{key: Strint.t, value: String.t}
+  @type t2 :: %Intro{key: integer(), value: String.t}
 
 
   @spec intro1 :: Intro.t()
   def intro1 do
-    %Intro{key: "Blubb", value: "Hallo"}
+    %Intro{key: 1, value: "Hallo"}
+
+
   end
 
 end
