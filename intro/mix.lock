@@ -1,0 +1,3 @@
+%{
+  "quick_struct": {:hex, :quick_struct, "0.1.1", "45b8e240a3e3db6b07e15ffc02238eae857764091a645b07ce9d28d2331e7276", [:mix], [], "hexpm", "faec2b5c217dabeb2bfec8d0dcc28a76f978b2b372ca111fea18ea256885a1e8"},
+}

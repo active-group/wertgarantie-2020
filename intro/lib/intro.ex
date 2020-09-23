@@ -52,13 +52,16 @@ defmodule Intro do
   # @enforce_keys [:key, :value]
   # defstruct [:key, :value]
   # @type t :: %Intro{key: integer(), value: String.t()}
+  # def make(var_key, var_value) do
+  #   %Intro(key: var_key, value: var_value)
+  # end
 
   # def intro1(), do: %Intro{key: 1, value: "Hallo"} # , do: ... ist abgekürzt für do ... end (nur eine Anweisung möglich)
   # def intro2(), do: %Intro{key: 2, value: "blubb"}
 
   use QuickStruct, [key: integer(), value: String.t()]
 
-  def intro1(), do: make("1", "Hallo")
+  def intro1(), do: make(1, "Hallo")
   def intro2(), do: make(2, "blubb")
   def intro3(), do: %Intro{value: "3. Wert", key: 3}
 
