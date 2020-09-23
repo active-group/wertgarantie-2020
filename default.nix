@@ -1,16 +1,5 @@
 let
   pkgs = import <nixpkgs> {};
-  erlangv2234 = pkgs.stdenv.lib.overrideDerivation pkgs.erlangR22 (oldAttrs: rec {
-    wxGTK = null;
-    name = "erlang-" + version;
-    version = "22.3.4.9";
-    src = pkgs.fetchFromGitHub {
-      owner = "erlang";
-      repo = "otp";
-      rev = "OTP-${version}";
-      sha256 = "0bgdm5nz1cbk7q7494dsgqswvq756jx8y1xil4sapfqhllimvpvi";
-    };
-  });
   erlangv2303 = pkgs.stdenv.lib.overrideDerivation pkgs.erlangR23 (oldAttrs: rec {
     wxGTK = null;
     name = "erlang-" + version;
