@@ -92,7 +92,6 @@ defmodule Intro do
         iex> Intro.Rechnung.my_fold_function(%Intro.Rechnung{to: "", 200.0, true}, true)
         true
 
-
     """
     @spec my_fold_function(Rechnung.t(), boolean()) :: boolean()
     def my_fold_function(rechnung, zwischenergebnis) do
