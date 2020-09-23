@@ -53,7 +53,7 @@ defmodule Intro do
   @type t :: %Intro{key: integer(), value: String.t()}
 
   @spec intro1 :: Intro.t()
-  def intro1 do
+  def intro1() do
     %Intro{key: 1, value: "Hallo"}
   end
 end
