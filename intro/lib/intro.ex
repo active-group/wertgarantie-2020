@@ -65,8 +65,13 @@ defmodule Intro do
   def intro2(), do: make(2, "blubb")
   def intro3(), do: %Intro{value: "3. Wert", key: 3}
 
-  defmodule Hallo do
-
+  defmodule Rechnung do
+    @moduledoc """
+    Rechnungen bestehen aus:
+    - einem Empfänger (E-Mailadresse als String)
+    - einem Betrag (float)
+    - ob die Rechnung bezahlt wurde (boolean, true -> wurde bezahlt)
+    """
   end
 
 end
