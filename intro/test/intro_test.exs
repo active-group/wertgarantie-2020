@@ -20,4 +20,10 @@ defmodule IntroTest do
     assert Intro.umfang(0) == 0
     assert_in_delta Intro.umfang(1), 2 * :math.pi, 0.00000001
   end
+
+  test "contains_do function" do
+    refute Intro.contains_do("Hallo")
+    assert Intro.contains_do("Sudo")
+    assert Intro.contains_do("do end concept")
+  end
 end

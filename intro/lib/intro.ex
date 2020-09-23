@@ -27,4 +27,20 @@ defmodule Intro do
   def umfang(radius) do
     2 * :math.pi * radius
   end
+
+  @doc """
+  Überprüfe ob eine Zeichenkette das Wort "do" enthält
+
+  ## Examples
+
+  contains_do("Hallo") -> false
+  contains_do("Sudo") -> true
+  contains_do("do end concept") -> true
+
+  """
+  @spec contains_do(String.t()) :: boolean()
+  def contains_do(text) do
+    String.contains?(text, "do")
+  end
+
 end
