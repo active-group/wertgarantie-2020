@@ -89,7 +89,5 @@ defmodule Intro do
     def my_fold_function(rechnung, zwischenergebnis) do
       rechnung.is_paid and zwischenergebnis
     end
-
-
   end
 end
