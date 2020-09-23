@@ -99,5 +99,9 @@ defmodule Intro do
     # def my_fold_function(rechnung, zwischenergebnis) do
     #   rechnung.is_paid and zwischenergebnis
     # end
+
+    @doc "Sind alle Rechnungen einer übergebenen Liste bezahlt?"
+    @spec all_paid_go_twice?([Rechnung.t()]) :: boolean()
+    def all_paid_go_twice?(rechnungen) do
   end
 end

@@ -40,4 +40,9 @@ defmodule IntroTest do
     refute Intro.Rechnung.all_paid?(rechnungen_all())
     assert Intro.Rechnung.all_paid?(rechnungen_paid())
   end
+
+  test "all_paid_go_twice? works" do
+    refute Intro.Rechnung.all_paid_go_twice?(rechnungen_all())
+    assert Intro.Rechnung.all_paid_go_twice?(rechnungen_paid())
+  end
 end
