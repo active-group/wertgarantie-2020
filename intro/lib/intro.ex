@@ -107,7 +107,7 @@ defmodule Intro do
         rechnung.is_paid
       end)
 
-      Enum.all?(result)
+      Enum.all?(result, fn element -> element)
     end
   end
 end
