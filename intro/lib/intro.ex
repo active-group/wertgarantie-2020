@@ -85,7 +85,7 @@ defmodule Intro do
       List.foldl(
         rechnungen,
         true,
-        &func/2
+        &func./2
       )
     end
 
