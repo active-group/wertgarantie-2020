@@ -46,4 +46,7 @@ defmodule Intro do
     String.contains?(text, "do")
   end
 
+  defstruct [:key, :value]
+
+
 end
