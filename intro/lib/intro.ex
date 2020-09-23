@@ -78,14 +78,12 @@ defmodule Intro do
     @doc "Sind alle Rechnungen einer übergebenen Liste bezahlt?"
     @spec all_paid?([Rechnung.t()]) :: boolean()
     def all_paid?(rechnungen) do
-      func = fn rechnung, zwischenergebnis ->
-        rechnung.is_paid and zwischenergebnis
-      end
-
       List.foldl(
         rechnungen,
         true,
-        &func./2
+        fn rechnung, zwischenergebnis ->
+          rechnung.is_paid and zwischenergebnis
+        end
       )
     end
 
