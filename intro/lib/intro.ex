@@ -103,5 +103,8 @@ defmodule Intro do
     @doc "Sind alle Rechnungen einer übergebenen Liste bezahlt?"
     @spec all_paid_go_twice?([Rechnung.t()]) :: boolean()
     def all_paid_go_twice?(rechnungen) do
+      # TODO
+      false
+    end
   end
 end
