@@ -75,14 +75,20 @@ defmodule Intro do
 
     use QuickStruct, to: String.t(), amount: float(), is_paid: boolean()
 
-
     @doc "Sind alle Rechnungen einer übergebenen Liste bezahlt?"
     @spec all_paid?([Rechnung.t()]) :: boolean()
-    def all_paid?(liste) do
-
-      false
+    def all_paid?(rechnungen) do
+      List.foldl(
+        rechnungen
+        true
+        &my_fold_function/2
+      )
     end
 
+    @spec my_fold_function(Rechnung.t(), boolean())
+    def my_fold_function(rechnung, zwischenergebnis) do
+      rechnung.is_paid and zwischenergebnis
+    end
 
 
   end

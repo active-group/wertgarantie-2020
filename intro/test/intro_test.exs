@@ -26,4 +26,18 @@ defmodule IntroTest do
     assert Intro.contains_do("Sudo")
     assert Intro.contains_do("do end concept")
   end
+
+  # Rechnungen
+  def rechnung1(), do: Intro.Rechnung.make("info@example.com", 200.0, false)
+  def rechnung2(), do: Intro.Rechnung.make("tim@example.com", -10.0, true)
+  def rechnung3(), do: Intro.Rechnung.make("kaan@example.com", 10.0, false)
+  def rechnung4(), do: Intro.Rechnung.make("chef@example.com", 2000.0, true)
+
+  def rechnungen_all(), do: [rechnung1(), rechnung2(), rechnung3(), rechnung4()]
+  def rechnungen_paid(), do: [rechnung2(), rechnung4()]
+
+  test "all_paid? works" do
+    refute Intro.Rechnung.all_paid?(rechnungen_all())
+    assert Intro.Rechnung.all_paid?(rechnungen_paid())
+  end
 end
