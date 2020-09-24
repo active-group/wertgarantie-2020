@@ -177,8 +177,8 @@ defmodule Intro do
   def fibonacci(n), do: fibonacci(n - 1) + fibonacci(n - 2)
 
   @doc "Prüfe ob eine übergebene Readme-Datei mehr als 21 Zeilen lang ist"
-  @spec readme_long_enough?(String.t()) :: boolean()
-  def readme_long_enough?(file) do
+  @spec readme_long_enough?(String.t(), integer()) :: boolean()
+  def readme_long_enough?(file, limit \\ 21) do
 
   end
 end
