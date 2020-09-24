@@ -2,6 +2,11 @@ defmodule Live do
   @moduledoc """
   Documentation for `Live`.
   """
+  use Application
+
+  def start(_type, _args) do
+    Live.Supervisor.start_link([])
+  end
 end
 
 defmodule Live.Supervisor do
