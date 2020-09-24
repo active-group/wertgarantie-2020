@@ -184,7 +184,9 @@ defmodule Intro do
         lines = String.split(file_content, "\n")
 
         Enum.count(lines) - 1 > limit
-      {:error, _} -> false
+
+      {:error, _} ->
+        false
     end
   end
 
