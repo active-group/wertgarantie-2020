@@ -17,5 +17,4 @@ defmodule Live.Domain.SchadenTest do
 
     assert Schaden.with_max_amount(s1, %{s1 | description: "Andere Bagatelle"}) == s1
   end
-
 end
