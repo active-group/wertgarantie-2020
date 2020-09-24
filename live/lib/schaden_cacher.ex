@@ -62,5 +62,5 @@ defmodule Live.SchadenCacher do
   # Überprüfe einen Schaden mit
   # Live.SchadenCacher.schaden_to_cache(pid, Live.Domain.Schaden.make(1, 20.0, "Bagatelle", 1001))
 
-  # # Live.SchadenCacher.schaden_to_cache(Live.SchadenCacher, Live.Domain.Schaden.make(1, 20.0, "Bagatelle", 1001))
+  # Live.SchadenCacher.schaden_to_cache(Live.SchadenCacher, Live.Domain.Schaden.make(1, 20.0, "Bagatelle", 1001))
 end
