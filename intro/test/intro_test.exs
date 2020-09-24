@@ -88,6 +88,8 @@ defmodule IntroTest do
   test "readme is long enough? can raise" do
     refute Intro.readme_long_enough_can_raise?("README.md")
     assert Intro.readme_long_enough_can_raise?("mix.exs")
-    # refute Intro.readme_long_enough_can_raise?("mich-gibt-esnicht-als-datei.txt")
+    assert_raise File.Error, fn ->
+      Intro.readme_long_enough_can_raise?("mich-gibt-esnicht-als-datei.txt")
+    end
   end
 end
