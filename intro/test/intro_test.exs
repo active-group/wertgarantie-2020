@@ -82,5 +82,6 @@ defmodule IntroTest do
   test "readme is long enough?" do
     refute Intro.readme_long_enough?("README.md")
     assert Intro.readme_long_enough?("mix.exs")
+    refute Intro.readme_long_enough?("mich-gibt-esnicht-als-datei.txt")
   end
 end

@@ -179,8 +179,13 @@ defmodule Intro do
   @doc "Prüfe ob eine übergebene Readme-Datei mehr als 21 Zeilen lang ist"
   @spec readme_long_enough?(String.t(), integer()) :: boolean()
   def readme_long_enough?(file, limit \\ 21) do
-    File.read(file)
-    |> IO.inspect
+    case File.read(file) do
+      {:ok, file_content} ->
+        String.split(file_content, "\n")
+        |> IO.inspect
+      {:error, _} -> false
+    end
+
 
   end
 end
