@@ -45,4 +45,42 @@ defmodule IntroTest do
     refute Intro.Rechnung.all_paid_go_twice?(rechnungen_all())
     assert Intro.Rechnung.all_paid_go_twice?(rechnungen_paid())
   end
+
+  # Lastschrift
+  def lastschrift1(), do: Intro.Lastschrift.make("DE02120300000000202051", 20.0, false)
+  def lastschrift2(), do: Intro.Lastschrift.make("DE02500105170137075030", 30.0, true)
+  def lastschrift3(), do: Intro.Lastschrift.make("DE0210050000005454040", 27.42, false)
+
+  test "lastschrift has valid iban?" do
+    assert Intro.Lastschrift.has_valid_iban?(lastschrift1())
+    assert Intro.Lastschrift.has_valid_iban?(lastschrift2())
+    refute Intro.Lastschrift.has_valid_iban?(lastschrift3())
+  end
+
+  # Zahlungen
+  test "got money?" do
+    refute Intro.got_money?(rechnung1())
+    assert Intro.got_money?(rechnung2())
+
+    refute Intro.got_money?(lastschrift1())
+    assert Intro.got_money?(lastschrift2())
+  end
+
+  test "fibonacci" do
+    assert Intro.fibonacci(1) == 1
+    assert Intro.fibonacci(2) == 1
+    assert Intro.fibonacci(3) == 2
+    assert Intro.fibonacci(4) == 3
+    assert Intro.fibonacci(5) == 5
+    assert Intro.fibonacci(6) == 8
+    assert Intro.fibonacci(7) == 13
+    assert Intro.fibonacci(8) == 21
+    assert Intro.fibonacci(9) == 34
+    assert Intro.fibonacci(10) == 55
+  end
+
+  test "readme is long enough?" do
+    refute Intro.readme_long_enough?("README.md")
+    assert Intro.readme_long_enough?("mix.exs")
+  end
 end

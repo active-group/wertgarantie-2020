@@ -51,7 +51,7 @@ defmodule Intro do
   # Einfacher Key-Value-Struct
   # @enforce_keys [:key, :value]
   # defstruct [:key, :value]
-  # @type t :: %Intro{key: integer(), value: String.t()}
+  # @type hans :: %Intro{key: integer(), value: String.t()}
   # def make(var_key, var_value) do
   #   %Intro(key: var_key, value: var_value)
   # end
@@ -112,5 +112,73 @@ defmodule Intro do
     def all_paid_go_twice?(rechnungen) do
       Enum.all?(rechnungen, fn rechnung -> rechnung.is_paid end)
     end
+  end
+
+  defmodule Lastschrift do
+    @moduledoc """
+    Eine Lastschrift besteht aus
+    - einer deutschen IBAN (String.t)
+    - einem Betrag (float)
+    - einem Feld ob sie ausgeführt wurde (boolean)
+    """
+
+    use QuickStruct, iban: String.t(), amount: float(), is_executed?: boolean()
+
+    @doc "Hat die IBAN einer Lastschrift die richtige Länge (22 Stellen)."
+    @spec has_valid_iban?(Lastschrift.t()) :: boolean()
+    def has_valid_iban?(lastschrift) do
+      String.length(lastschrift.iban) == 22
+    end
+  end
+
+  @typedoc """
+  Zahlungseingänge sind entweder
+  - Lastschriften oder
+  - Rechnungen
+  """
+  @type zahlung :: Lastschrift.t() | Rechnung.t()
+  @type string_or_regex :: String.t() | Regex.t()
+
+  @doc "Ist das Geld einer Zahlung schon da?"
+  @spec got_money?(zahlung()) :: boolean()
+  # def got_money?(zahlung) do
+  #   case zahlung do
+  #     %Lastschrift{is_executed?: result} ->
+  #       result # zahlung.is_exectued?
+  #     %Rechnung{is_paid: result} ->
+  #       result # zahlung.is_paid
+  #   end
+  # end
+  def got_money?(%Lastschrift{is_executed?: result} = _zahlung), do: result
+  def got_money?(%Rechnung{is_paid: result} = _zahlung), do: result
+
+  @doc """
+  Die Fibonacci-Folge an der Stelle n mit n ab 1.
+
+  f_1 = 1
+  f_2 = 1
+  f_n = f_n-1 + f_n-2   (für n ab 3)
+
+  ## Examples
+
+      iex> Intro.fibonacci(1)
+      1
+      iex> Intro.fibonacci(2)
+      1
+      iex> Intro.fibonacci(3)
+      2
+      iex> Intro.fibonacci(8)
+      21
+
+  """
+  @spec fibonacci(pos_integer()) :: pos_integer()
+  def fibonacci(1), do: 1
+  def fibonacci(2), do: 1
+  def fibonacci(n), do: fibonacci(n - 1) + fibonacci(n - 2)
+
+  @doc "Prüfe ob eine übergebene Readme-Datei mehr als 21 Zeilen lang ist"
+  @spec readme_long_enough?(String.t()) :: boolean()
+  def readme_long_enough?(file) do
+
   end
 end
