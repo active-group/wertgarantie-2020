@@ -183,7 +183,7 @@ defmodule Intro do
       {:ok, file_content} ->
         lines = String.split(file_content, "\n")
 
-        Enum.count(lines) |> IO.inspect > limit
+        Enum.count(lines) - 1 > limit
       {:error, _} -> false
     end
 
