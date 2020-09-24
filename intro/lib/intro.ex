@@ -181,8 +181,9 @@ defmodule Intro do
   def readme_long_enough?(file, limit \\ 21) do
     case File.read(file) do
       {:ok, file_content} ->
-        String.split(file_content, "\n")
-        |> IO.inspect
+        lines = String.split(file_content, "\n")
+
+        Enum.count(lines) > limit
       {:error, _} -> false
     end
 
