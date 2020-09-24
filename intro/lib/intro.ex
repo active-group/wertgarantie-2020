@@ -186,7 +186,14 @@ defmodule Intro do
         Enum.count(lines) - 1 > limit
       {:error, _} -> false
     end
+  end
 
+  @doc "RAISE Prüfe ob eine übergebene Readme-Datei mehr als 21 Zeilen lang ist"
+  @spec readme_long_enough_can_raise?(String.t(), integer()) :: boolean()
+  def readme_long_enough_can_raise?(file, limit \\ 21) do
+    file_content = File.read!(file)
+    lines = String.split(file_content, "\n")
 
+    Enum.count(lines) - 1 > limit
   end
 end
