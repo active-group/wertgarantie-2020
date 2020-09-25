@@ -9,14 +9,14 @@ defmodule Live.Domain.Schaden do
 
   use QuickStruct,
     id: integer(),
-    forecast_amount: float(),
+    amount: float(),
     description: String.t(),
     partner_nr: integer()
 
   @doc "Bekommt zwei Schäden und liefert den Schaden mit der höheren Schadenssumme zurück"
   @spec with_max_amount(Schaden.t(), Schaden.t()) :: Schaden.t()
   def with_max_amount(first, second) do
-    if first.forecast_amount >= second.forecast_amount do
+    if first.amount >= second.amount do
       first
     else
       second
