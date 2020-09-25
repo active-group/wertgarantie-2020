@@ -28,13 +28,13 @@ defmodule Live.Domain.Schaden do
 
   ## Examples
 
-      iex> Live.Domain.Schaden(sort_along_amount([
-        Live.Domain.Schaden.make(1, 18.0, "", 1),
-        Live.Domain.Schaden.make(2, 10.0, "", 2),
-        ])
+      iex> Live.Domain.Schaden.sort_along_amount([
+      ...>   Live.Domain.Schaden.make(1, 18.0, "", 1),
+      ...>   Live.Domain.Schaden.make(2, 10.0, "", 2)
+      ...> ])
       [
-        Live.Domain.Schaden.make(2, 10.0, "", 2)
-        Live.Domain.Schaden.make(1, 18.0, "", 1),
+        Live.Domain.Schaden.make(2, 10.0, "", 2),
+        Live.Domain.Schaden.make(1, 18.0, "", 1)
       ]
 
   """

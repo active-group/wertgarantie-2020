@@ -1,5 +1,6 @@
 defmodule Live.Domain.SchadenTest do
   use ExUnit.Case
+  doctest Live.Domain.Schaden
 
   alias Live.Domain.Schaden
 
