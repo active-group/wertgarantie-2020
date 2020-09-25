@@ -31,4 +31,15 @@ defmodule Live.Supervisor do
 
   # Starte den Supervisor mit (wenn manuell):
   # Live.Supervisor.start_link([])
+
+  ### Release bauen mit distillery ###
+  #
+  # MIX_ENV=prod mix distillery.release
+  #
+  # Kopiere dann _build/prod/rel/live z. B. nach /tmp/
+  #
+  # Starte das Release dann mit:
+  #
+  #    /tmp/live/bin/live console
+  ###
 end
