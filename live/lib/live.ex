@@ -32,9 +32,9 @@ defmodule Live.Supervisor do
   # Starte den Supervisor mit (wenn manuell):
   # Live.Supervisor.start_link([])
 
-  ### Release bauen mit distillery ###
+  ### Release bauen mit Distillery ###
   #
-  # MIX_ENV=prod mix distillery.release
+  #    MIX_ENV=prod mix distillery.release
   #
   # Kopiere dann _build/prod/rel/live z. B. nach /tmp/
   #
@@ -43,5 +43,27 @@ defmodule Live.Supervisor do
   #    /tmp/live/bin/live console
   #
   # Dies lässt eine Konsole offen, nicht geeignet für den tatsächlichen Serverbetrieb.
+  ###
+
+  ### Release als Upgrade bauen ###
+  #
+  #    MIX_ENV=prod mix distillery.release --upgrade
+  #
+  # Lege ein releases/VERSIONSNR Ordner am Zielort an, z. B.
+  #
+  #    mkdir /tmp/live/releases/0.1.1
+  #
+  # Kopiere den tar-ball des Release dort hin, z. B.
+  #
+  #    cp _build/prod/rel/live/releases/0.1.1/live.tar.gz /tmp/live/releases/0.1.1/
+  #
+  # Upgrade das parallel laufende Release mit z. B.
+  #
+  #    /tmp/live/bin/live upgrade "0.1.1"
+  #
+  # Downgrade ebenso möglich mit z. B.
+  #
+  #    /tmp/live/bin/live downgrade "0.1.0"
+  #
   ###
 end
