@@ -41,5 +41,6 @@ defmodule Live.Supervisor do
   # Starte das Release dann mit:
   #
   #    /tmp/live/bin/live console
+  #
   ###
 end
