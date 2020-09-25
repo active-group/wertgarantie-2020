@@ -7,7 +7,7 @@ defmodule Live.SchadenCacher do
   und sonst nichts.
   """
   use GenServer
-  @vsn 3
+  @vsn 2
 
   # statt Live.Domain.Schaden.make(...) -> Schaden.make(...)
   alias Live.Domain.Schaden
