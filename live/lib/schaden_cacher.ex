@@ -87,9 +87,10 @@ defmodule Live.SchadenCacher do
   Da wir in Live.Domain.Schaden.t() das Feld :amount zu :forecast_amount abgeändert haben, müssen wir unseren
   Zustand des GenServer migrieren.
   """
+  @spec code_change(String.t(), %{id: integer(), amount: float(), description: String.t(), partner_nr: integer()}, any()) :: {:ok, Schaden.t()}
   # def code_change(alte_version_vsn, alten_state, _extra) do
   def code_change("1", old_state, _extra) do
-    new_state = Live.Domain.Schaden.make(old_state.id, old_state.amount, old_state.description, old_state.partner_nr)
+    new_state = Schaden.make(old_state.id, old_state.amount, old_state.description, old_state.partner_nr)
 
     {:ok, new_state}
   end
