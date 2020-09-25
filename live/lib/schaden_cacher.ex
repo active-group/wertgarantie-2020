@@ -94,7 +94,7 @@ defmodule Live.SchadenCacher do
           any()
         ) :: {:ok, Schaden.t()}
   # def code_change(alte_version_vsn, alten_state, _extra) do
-  def code_change("1", old_state, _extra) do
+  def code_change(_any, old_state, _extra) do
     new_state =
       Schaden.make(old_state.id, old_state.amount, old_state.description, old_state.partner_nr)
 
