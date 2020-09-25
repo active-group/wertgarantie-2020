@@ -29,8 +29,17 @@ defmodule Live.SchadenCacher do
   @doc "Einen Schaden überprüfen/übermitteln"
   @spec schaden_to_cache(GenServer.server(), Schaden.t()) :: term()
   def schaden_to_cache(server, schaden) do
-    GenServer.call(server, {:check, schaden})
+    GenServer.call(server, {:check, schaden}) # schicke Nachricht {:check, ein_schaden} an GenServer
+     # Alternativ GenServer.cast(...) -> wartet nicht auf eine Antwort
+     # Unten die Implementierung im Server dann: handle_call ersetzen durch handle_cast
+     # und die Rückgabe wäre {:noreply, neuer_zustand} (statt {:reply, ANTWORT, neuer_zustand})
+
+     # Die Nachricht ist an sich sich frei wählbar, denkbar wäre z. B. auch
+     # GenServer.call(server, "Überprüfe diesen Schaden hier: Schaden_als_string")
+     # -> unten dann: def handle_call("Überprüfe diesen Schaden hier: " <> schaden_als_string, _from, schaden)
+     # -> wäre schlechte Nachricht, weil schaden_als_string keine gute Datenstruktur ist
   end
+
 
   # <<< Client Functions
 
@@ -50,6 +59,13 @@ defmodule Live.SchadenCacher do
     # max_schaden ist der neue State
     {:reply, "Checked your schaden. Max Schaden is #{inspect(max_schaden)}", max_schaden}
   end
+  # def handle_call(nachricht_die_ankommt, _from, schaden) do
+  #   # Muss prüfen ob nachricht_die_ankommt so aussieht wie {:check, schaden}
+  #   case nachricht_die_ankommt do
+  #     {:check, schaden} -> mache_weiter
+  #     alle_anderen_narichten -> tue nichts oder raise oder was auch immer
+  #   end
+  # end
 
   # def handle_call(others, _from, state) do
   #   {:reply, "Message unknown", state}
@@ -62,5 +78,6 @@ defmodule Live.SchadenCacher do
   # Überprüfe einen Schaden mit
   # Live.SchadenCacher.schaden_to_cache(pid, Live.Domain.Schaden.make(1, 20.0, "Bagatelle", 1001))
 
+  # Oder mit Namen: Live-SchadenCacher in unserem Fall
   # Live.SchadenCacher.schaden_to_cache(Live.SchadenCacher, Live.Domain.Schaden.make(1, 20.0, "Bagatelle", 1001))
 end
