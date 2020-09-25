@@ -2,7 +2,7 @@ defmodule Live.Domain.Schaden do
   @moduledoc """
   Der Datentyp Schaden besteht aus:
   - id (int)
-  - amount (float): Prognostizierte Schadenssumme, Reserve
+  - forecast_amount (float): Prognostizierte Schadenssumme, Reserve
   - description (string): Beschreibung des Schadens
   - partner_nr (int): Partner-Nummer der versicherten Person
   """
@@ -21,5 +21,26 @@ defmodule Live.Domain.Schaden do
     else
       second
     end
+  end
+
+  @doc """
+  Sortiert eine Liste von Schäden, anhand ihrer Schadenssumme (aufsteigend).
+
+  ## Examples
+
+      iex> Live.Domain.Schaden(sort_along_amount([
+        Live.Domain.Schaden.make(1, 18.0, "", 1),
+        Live.Domain.Schaden.make(2, 10.0, "", 2),
+        ])
+      [
+        Live.Domain.Schaden.make(2, 10.0, "", 2)
+        Live.Domain.Schaden.make(1, 18.0, "", 1),
+      ]
+
+  """
+  @spec sort_along_amount([Schaden.t()]) :: [Schaden.t()]
+  def sort_along_amount(schadensliste) do
+
+    [] #TODO
   end
 end
