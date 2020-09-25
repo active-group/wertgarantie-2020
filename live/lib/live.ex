@@ -42,5 +42,6 @@ defmodule Live.Supervisor do
   #
   #    /tmp/live/bin/live console
   #
+  # Dies lässt eine Konsole offen, nicht geeignet für den tatsächlichen Serverbetrieb.
   ###
 end
