@@ -29,17 +29,17 @@ defmodule Live.SchadenCacher do
   @doc "Einen Schaden überprüfen/übermitteln"
   @spec schaden_to_cache(GenServer.server(), Schaden.t()) :: term()
   def schaden_to_cache(server, schaden) do
-    GenServer.call(server, {:check, schaden}) # schicke Nachricht {:check, ein_schaden} an GenServer
-     # Alternativ GenServer.cast(...) -> wartet nicht auf eine Antwort
-     # Unten die Implementierung im Server dann: handle_call ersetzen durch handle_cast
-     # und die Rückgabe wäre {:noreply, neuer_zustand} (statt {:reply, ANTWORT, neuer_zustand})
+    # schicke Nachricht {:check, ein_schaden} an GenServer
+    GenServer.call(server, {:check, schaden})
+    # Alternativ GenServer.cast(...) -> wartet nicht auf eine Antwort
+    # Unten die Implementierung im Server dann: handle_call ersetzen durch handle_cast
+    # und die Rückgabe wäre {:noreply, neuer_zustand} (statt {:reply, ANTWORT, neuer_zustand})
 
-     # Die Nachricht ist an sich sich frei wählbar, denkbar wäre z. B. auch
-     # GenServer.call(server, "Überprüfe diesen Schaden hier: Schaden_als_string")
-     # -> unten dann: def handle_call("Überprüfe diesen Schaden hier: " <> schaden_als_string, _from, schaden)
-     # -> wäre schlechte Nachricht, weil schaden_als_string keine gute Datenstruktur ist
+    # Die Nachricht ist an sich sich frei wählbar, denkbar wäre z. B. auch
+    # GenServer.call(server, "Überprüfe diesen Schaden hier: Schaden_als_string")
+    # -> unten dann: def handle_call("Überprüfe diesen Schaden hier: " <> schaden_als_string, _from, schaden)
+    # -> wäre schlechte Nachricht, weil schaden_als_string keine gute Datenstruktur ist
   end
-
 
   # <<< Client Functions
 
@@ -59,6 +59,7 @@ defmodule Live.SchadenCacher do
     # max_schaden ist der neue State
     {:reply, "Checked your schaden. Max Schaden is #{inspect(max_schaden)}", max_schaden}
   end
+
   # def handle_call(nachricht_die_ankommt, _from, schaden) do
   #   # Muss prüfen ob nachricht_die_ankommt so aussieht wie {:check, schaden}
   #   case nachricht_die_ankommt do
@@ -87,15 +88,20 @@ defmodule Live.SchadenCacher do
   Da wir in Live.Domain.Schaden.t() das Feld :amount zu :forecast_amount abgeändert haben, müssen wir unseren
   Zustand des GenServer migrieren.
   """
-  @spec code_change(String.t(), %{id: integer(), amount: float(), description: String.t(), partner_nr: integer()}, any()) :: {:ok, Schaden.t()}
+  @spec code_change(
+          String.t(),
+          %{id: integer(), amount: float(), description: String.t(), partner_nr: integer()},
+          any()
+        ) :: {:ok, Schaden.t()}
   # def code_change(alte_version_vsn, alten_state, _extra) do
   def code_change("1", old_state, _extra) do
-    new_state = Schaden.make(old_state.id, old_state.amount, old_state.description, old_state.partner_nr)
+    new_state =
+      Schaden.make(old_state.id, old_state.amount, old_state.description, old_state.partner_nr)
 
     {:ok, new_state}
   end
+
   # def code_change("2", old_state, _extra) do
   #   mach was anderes
   # end
-
 end
