@@ -41,6 +41,12 @@ defmodule Live.SchadenCacher do
     # -> wäre schlechte Nachricht, weil schaden_als_string keine gute Datenstruktur ist
   end
 
+  @doc "Wie ist der momentan teuerste Schaden"
+  @spec get(GenServer.server()) :: term()
+  def get(server) do
+    GenServer.call(server, {:get})
+  end
+
   # <<< Client Functions
 
   # >>> Server
@@ -58,6 +64,10 @@ defmodule Live.SchadenCacher do
 
     # max_schaden ist der neue State
     {:reply, "Checked your schaden. Max Schaden is #{inspect(max_schaden)}", max_schaden}
+  end
+
+  def handle_call({:get}, _from, schaden) do
+    {:reply, schaden, schaden}
   end
 
   # def handle_call(nachricht_die_ankommt, _from, schaden) do
