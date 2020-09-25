@@ -18,4 +18,21 @@ defmodule Live.Domain.SchadenTest do
 
     assert Schaden.with_max_amount(s1, %{s1 | description: "Andere Bagatelle"}) == s1
   end
+
+  test "sort schaden along amount" do
+    assert Schaden.sort_along_amount([
+             Schaden.make(2, 500, "Stoßstangen sind heutzutage lackiert", 9999),
+             Schaden.make(1, 20.0, "Bagatelle", 1001),
+             Schaden.make(3, 500, "Stoßstangen sind heutzutage lackiert", 9999),
+             Schaden.make(4, 10, "Stoßstangen sind heutzutage lackiert", 9999)
+           ]) ==
+             [
+               Schaden.make(4, 10, "Stoßstangen sind heutzutage lackiert", 9999),
+               Schaden.make(1, 20.0, "Bagatelle", 1001),
+               Schaden.make(2, 500, "Stoßstangen sind heutzutage lackiert", 9999),
+               Schaden.make(3, 500, "Stoßstangen sind heutzutage lackiert", 9999)
+             ]
+
+    assert Schaden.sort_along_amount([]) |> Enum.empty?()
+  end
 end

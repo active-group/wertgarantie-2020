@@ -40,7 +40,6 @@ defmodule Live.Domain.Schaden do
   """
   @spec sort_along_amount([Schaden.t()]) :: [Schaden.t()]
   def sort_along_amount(schadensliste) do
-
-    [] #TODO
+    Enum.sort_by(schadensliste, fn schaden -> schaden.forecast_amount end)
   end
 end
