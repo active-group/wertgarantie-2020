@@ -47,6 +47,7 @@ defmodule Server do
     {:ok, start_factorials()}
   end
 
+  # Empfängt Verbindungen zu Klienten und startet für jede davon einen Prozess
   defp loop_acceptor(socket, server_pid) do
     # Blockiert solange, bis ein Client kommt
     {:ok, client} = :gen_tcp.accept(socket)
@@ -61,6 +62,7 @@ defmodule Server do
     loop_acceptor(socket, server_pid)
   end
 
+  # Empfängt die Nachrichten innerhalb einer Verbindung zu einem Klienten und verarbeitet diese
   defp serve(client_socket) do
     # Echo: was gelesen wird, wird zurück geschrieben
     # read_line(client_socket)
@@ -76,6 +78,7 @@ defmodule Server do
     end
   end
 
+  # Wenn eine Nachricht gelesen wurde, versuche sie zu verstehen und verarbeite diese
   defp parse_message(data, client_socket) do
     trim_and_integer(data)
     |> case do
