@@ -7,7 +7,7 @@ defmodule Live.SchadenCacher do
   und sonst nichts.
   """
   use GenServer
-  @vsn 1
+  @vsn 2
 
   # statt Live.Domain.Schaden.make(...) -> Schaden.make(...)
   alias Live.Domain.Schaden
@@ -80,4 +80,15 @@ defmodule Live.SchadenCacher do
 
   # Oder mit Namen: Live-SchadenCacher in unserem Fall
   # Live.SchadenCacher.schaden_to_cache(Live.SchadenCacher, Live.Domain.Schaden.make(1, 20.0, "Bagatelle", 1001))
+
+  # Hot-Code Upgrade
+
+  @doc """
+  Da wir in Live.Domain.Schaden.t() das Feld :amount zu :forecast_amount abgeändert haben, müssen wir unseren
+  Zustand des GenServer migrieren.
+  """
+  # def code_change(alte_version_vsn, alten_state, _extra) do
+  def code_change(alte_version, old_state, _extra) do
+
+  end
 end
