@@ -38,6 +38,8 @@ defmodule Live.Supervisor do
   #
   # Kopiere dann _build/prod/rel/live z. B. nach /tmp/
   #
+  #    cp -r _build/prod/rel/live /tmp/
+  #
   # Starte das Release dann mit:
   #
   #    /tmp/live/bin/live console
