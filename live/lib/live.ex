@@ -53,15 +53,15 @@ defmodule Live.Supervisor do
   #
   # Lege ein releases/VERSIONSNR Ordner am Zielort an, z. B.
   #
-  #    mkdir /tmp/live/releases/0.1.2
+  #    mkdir /tmp/live/releases/0.1.1
   #
   # Kopiere den tar-ball des Release dort hin, z. B.
   #
-  #    cp _build/prod/rel/live/releases/0.1.2/live.tar.gz /tmp/live/releases/0.1.2/
+  #    cp _build/prod/rel/live/releases/0.1.1/live.tar.gz /tmp/live/releases/0.1.1/
   #
   # Upgrade das parallel laufende Release mit z. B.
   #
-  #    /tmp/live/bin/live upgrade "0.1.2"
+  #    /tmp/live/bin/live upgrade "0.1.1"
   #
   # Downgrade ebenso möglich mit z. B.
   #
