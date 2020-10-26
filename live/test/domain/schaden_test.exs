@@ -140,6 +140,17 @@ defmodule Live.Domain.SchadenTest do
     )
   end
 
+  # Generiert Liste mit zwei Schäden
+  defp list_with_two_schäden_gen() do
+    let(
+      [
+        first <- schaden_gen(),
+        second <- schaden_gen()
+      ],
+      do: [first, second]
+    )
+  end
+
   property "Summe von einem Schaden mit nicht negativer Schadenssumme ist nicht negativ" do
     forall schaden <- schaden_gen() do
       assert Schaden.amount_sum([schaden]) >= 0
@@ -149,6 +160,18 @@ defmodule Live.Domain.SchadenTest do
   property "Summe einer Liste aus (nicht negativen) Schäden ist nicht negativ" do
     forall schäden <- list(schaden_gen()) do
       assert Schaden.amount_sum(schäden) >= 0
+    end
+  end
+
+  # assert Schaden.with_max_amount(s500, s20) == s500
+  # Schaden.sort_along_amount([s500, s20]) == [s20, s500]
+  property "Bei einer Liste mit zwei sortierten Schäden, gewinnt immer der zweite Schaden" do
+    forall two_schäden <- list_with_two_schäden_gen() do
+      [low, high] = Schaden.sort_along_amount(two_schäden)
+      # IO.inspect([low, high])
+
+      assert Schaden.with_max_amount(low, high) == high
+      assert Schaden.with_max_amount(high, low) == high
     end
   end
 end
