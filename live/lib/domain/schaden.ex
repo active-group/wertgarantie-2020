@@ -85,9 +85,7 @@ defmodule Live.Domain.Schaden do
   @spec belongs_to_partner_with_logging?([Schaden.t()], partner_nr()) :: boolean()
   def belongs_to_partner_with_logging?(schadensliste, p_nr) do
     if schadensliste == [] do
-      Logger.warn(
-        "Called belongt_to_partner? with empty list and partner_nummer '#{p_nr}'"
-      )
+      Logger.warn("Called belongt_to_partner? with empty list and partner_nummer '#{p_nr}'")
     end
 
     belongs_to_partner?(schadensliste, p_nr)
