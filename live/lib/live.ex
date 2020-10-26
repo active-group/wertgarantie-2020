@@ -23,7 +23,8 @@ defmodule Live.Supervisor do
 
   def init(_state) do
     children = [
-      worker(Live.SchadenCacher, [Live.SchadenCacher.init_schaden()], restart: :permanent)
+      worker(Live.SchadenCacher, [Live.SchadenCacher.init_schaden()], restart: :permanent),
+      Live.Repo
     ]
 
     Supervisor.init(children, strategy: :one_for_one)
