@@ -10,6 +10,8 @@ defmodule Live.SchadenCacher do
   # vorher "1"
   @vsn "2"
 
+  require Logger
+
   # statt Live.Domain.Schaden.make(...) -> Schaden.make(...)
   alias Live.Domain.Schaden
 
@@ -53,14 +55,14 @@ defmodule Live.SchadenCacher do
   # >>> Server
   @spec init(Schaden.t()) :: {:ok, Schaden.t()}
   def init(schaden) do
-    IO.puts("Init SchadenCache with #{inspect(schaden)}")
+    Logger.info("Init SchadenCache with #{inspect(schaden)}")
 
     {:ok, schaden}
   end
 
   # schaden ist der alte State
   def handle_call({:check, new_schaden}, _from, schaden) do
-    IO.puts("Check Schaden #{inspect(schaden)}")
+    Logger.info("Check Schaden #{inspect(schaden)}")
     max_schaden = Schaden.with_max_amount(schaden, new_schaden)
 
     # max_schaden ist der neue State
