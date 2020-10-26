@@ -1,18 +1,26 @@
-defmodule Live.Repo.Partner do
+defmodule Live.Repo.Schaden do
   @moduledoc """
-  Operiert mit der Tabelle "partner" aus Postgres
+  Operiert mit der Tabelle "schaden" aus Postgres
   """
   import Ecto.Query
 
-  @doc "Liest einen Partner aus der Datenbank aus"
-  @spec by_partner_nr(Live.Domain.Schaden.partner_nr()) :: any()
-  def by_partner_nr(partner_nr) do
+  @doc "Wandelt das Datenbankergebnis zu einem Schaden-Struct"
+  @spec to_schaden(list()) :: Live.Domain.Schaden.t()
+  def to_schaden([id, desc, amount, partner_nr]) do
+    Live.Domain.Schaden.make(id, amount, desc, partner_nr)
+  end
+
+  @doc "Alle Daten auslesen"
+  @spec all() :: list(Live.Domain.Schaden.t())
+  def all() do
+    # SELECT s.id, s.desc, s.amount, s.partner FROM schaden S WHERE s.id > 0
     query =
-      from(p in "partner",
-        select: [p.partner_nr, p.year_of_admission],
-        where: p.partner_nr == ^partner_nr
+      from(s in "schaden",
+        select: [s.id, s.desc, s.amount, s.partner],
+        where: s.id > 0
       )
 
-    Live.Repo.one!(query)
+    Live.Repo.all(query)
+    |> Enum.map(&to_schaden/1)
   end
 end
