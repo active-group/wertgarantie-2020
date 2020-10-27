@@ -36,8 +36,27 @@ defmodule DnsServer.Domain do
     def matches_namespace?(%HostInfo{uri: uri}, namespace) do
       Enum.join(namespace, ".") == uri
     end
+
+    def matches_uri?(%HostInfo{uri: uri}, other_uri) do
+      uri == other_uri
+    end
   end
 
   @type dns_element ::
           ServerInfo.t() | HostInfo.t()
+
+  def matching_host(elems, uri) do
+    Enum.filter(elems, fn
+      %HostInfo{} = host -> HostInfo.matches_uri?(host, uri)
+      %ServerInfo{} -> false
+    end)
+    |> List.first()
+  end
+
+  def servers_only(elems) do
+    Enum.filter(elems, fn
+      %ServerInfo{} -> true
+      %HostInfo{} -> false
+    end)
+  end
 end

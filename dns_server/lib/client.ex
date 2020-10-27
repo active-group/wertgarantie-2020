@@ -13,20 +13,15 @@ defmodule DnsServer.Client do
 
   defp resolve_helper(nodes, url, api_find_fn) do
     Enum.reduce(nodes, nil, fn node, result ->
-      Logger.info("asking #{inspect(node.name)} (#{inspect(node.namespace)})")
+      Logger.info("asking (#{inspect(node.namespace)})")
 
       if result do
         result
       else
-        ret =
-          case api_find_fn.(node, url) do
-            {:ok, :retry_at, nodes} -> resolve_helper(nodes, url, api_find_fn)
-            other -> other
-          end
-
-        case ret do
-          {:ok, something} -> {:ok, something}
-          _something_else -> nil
+        case api_find_fn.(node, url) do
+          {:ok, :retry_at, nodes} -> resolve_helper(nodes, url, api_find_fn)
+          {:ok, something} -> something
+          {:error, :not_found} -> nil
         end
       end
     end)
@@ -38,6 +33,9 @@ defmodule DnsServer.Client do
   """
   @spec resolve(any(), uri_t(), find_fn_t()) :: {:ok, address_t()} | {:error, :not_found}
   def resolve(node, url, api_find_fn) do
-    resolve_helper([node], url, api_find_fn)
+    case resolve_helper([node], url, api_find_fn) do
+      %HostInfo{address: address} -> {:ok, address}
+      _ -> :not_found
+    end
   end
 end

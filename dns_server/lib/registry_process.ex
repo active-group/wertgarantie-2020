@@ -1,6 +1,7 @@
 defmodule DnsServer.RegistryProcess do
   use GenServer
   alias DnsServer.LookupProcess
+  alias DnsServer.Domain.ServerInfo
 
   defmodule State do
     use QuickStruct, lookup: identifier()
@@ -12,6 +13,10 @@ defmodule DnsServer.RegistryProcess do
 
   def init([lookup]) do
     {:ok, State.make(lookup)}
+  end
+
+  def register_child(%ServerInfo{registry: registry}, child_info) do
+    GenServer.cast(registry, {:register_child, child_info})
   end
 
   def register_child(identifier, child_info) do
