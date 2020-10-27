@@ -1,4 +1,2 @@
 defmodule DnsServer do
-
-
 end

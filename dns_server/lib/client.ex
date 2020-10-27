@@ -1,7 +1,9 @@
 defmodule DnsServer.Client do
+  alias DnsServer.Domain
+
   @type node_t :: any()
-  @type uri_t :: String.t()
-  @type address_t :: String.t()
+  @type uri_t :: Domain.uri_t()
+  @type address_t :: Domain.address_t()
   @type find_fn_return_type ::
           {:ok, address_t()} | {:ok, :retry_at, node_t()} | {:error, :not_found}
 
