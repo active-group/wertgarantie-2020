@@ -1,5 +1,6 @@
 defmodule DnsServer.Client do
   alias DnsServer.Domain
+  alias DnsServer.Domain.HostInfo
 
   @type node_t :: any()
   @type uri_t :: Domain.uri_t()
