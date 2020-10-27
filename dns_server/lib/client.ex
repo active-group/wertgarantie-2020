@@ -1,12 +1,11 @@
 defmodule DnsServer.Client do
-
   @type node_t :: any()
   @type uri_t :: String.t()
   @type address_t :: String.t()
-  @type find_fn_return_type ::  {:ok, address_t()} | {:ok, :retry_at, node_t()} | {:error, :not_found}
+  @type find_fn_return_type ::
+          {:ok, address_t()} | {:ok, :retry_at, node_t()} | {:error, :not_found}
 
   @type find_fn_t :: (node_t() -> find_fn_return_type())
-
 
   require Logger
 
@@ -30,6 +29,7 @@ defmodule DnsServer.Client do
       end
     end)
   end
+
   @doc """
   Takes a node, that is, any representation identifying a node, a URI and a
   find function, and returns an address that belongs to the URI or an not found error.
