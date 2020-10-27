@@ -39,5 +39,5 @@ defmodule DnsServer.Domain do
   end
 
   @type dns_element ::
-          ServerInfo.t() | HostInfo.t()
+          ServerInfo.t() | HostInfo.t() | String.t()
 end

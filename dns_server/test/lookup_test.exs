@@ -36,12 +36,11 @@ defmodule DnsServer.LookupTest do
 
       assert Lookup.best_matching(
                lookup,
-               "de.wikipedia.org",
+               "de.wikipedia.org"
              ) == [server1]
     end
 
     test "returns multiple matches" do
-
       server1 = ServerInfo.make(["org"], nil, nil)
       server2 = ServerInfo.make(["org"], nil, nil)
 
@@ -51,13 +50,14 @@ defmodule DnsServer.LookupTest do
         |> Lookup.put(server2)
 
       assert Lookup.best_matching(
-               lookup, "de.wikipedia.org"
+               lookup,
+               "de.wikipedia.org"
              ) == [server1, server2]
     end
 
-    test "lookup returns hosts, too" describe "" do
+    test "lookup returns hosts, too" do
       server1 = ServerInfo.make(["wikipedia", "org"], nil, nil)
-      host1 = HostInfo.make(["wikipedia", "org"], nil, nil)
+      host1 = HostInfo.make("wikipedia.org", "10.10.10.10")
 
       lookup =
         Lookup.init()
@@ -65,8 +65,9 @@ defmodule DnsServer.LookupTest do
         |> Lookup.put(host1)
 
       assert Lookup.best_matching(
-        lookup, "de.wikipedia.org"
-      ) == [server1, host1]
+               lookup,
+               "de.wikipedia.org"
+             ) == [host1, server1]
     end
   end
 end
