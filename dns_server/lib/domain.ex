@@ -12,6 +12,7 @@ defmodule DnsServer.Domain do
     alias DnsServer.Domain
 
     use QuickStruct,
+      name: identifier(),
       namespace: Domain.namespaces_t(),
       registry: identifier(),
       client: identifier()

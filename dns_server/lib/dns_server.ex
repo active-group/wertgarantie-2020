@@ -13,6 +13,8 @@ defmodule DnsServer do
     org = DnsServer.start(name: :org, namespace: ["org"])
     wikipedia = DnsServer.start(name: :wikipedia, namespace: ["wikipedia", "org"])
 
+    IO.inspect(root)
+
     host1 = Domain.HostInfo.make("de.wikipedia.org", "10.5.10.2")
     host2 = Domain.HostInfo.make("de.wikipedia.org", "10.5.10.3")
 
@@ -34,17 +36,17 @@ defmodule DnsServer do
 
   @spec start(name: atom(), namespace: Domain.namespaces_t()) :: ServerInfo.t()
   def start(name: name, namespace: namespace) do
-    registry_name = with_suffix(name, "_registry")
-    lookup_name = with_suffix(name, "_lookup")
-    client_name = with_suffix(name, "_client")
+    registry_name = {:global, with_suffix(name, "_registry")}
+    lookup_name = {:global, with_suffix(name, "_lookup")}
+    client_name = {:global, with_suffix(name, "_client")}
 
     Supervisor.start_link(
       __MODULE__,
       [registry: registry_name, lookup: lookup_name, client: client_name],
-      name: name
+      name: {:global, name}
     )
 
-    ServerInfo.make(namespace, registry_name, client_name)
+    ServerInfo.make({:global, name}, namespace, registry_name, client_name)
   end
 
   def init(registry: registry_name, lookup: lookup_name, client: client_name) do

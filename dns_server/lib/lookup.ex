@@ -44,4 +44,14 @@ defmodule DnsServer.Lookup do
   def put(%Lookup{entries: entries} = lookup, entry) do
     %Lookup{lookup | entries: [entry | entries]}
   end
+
+  def remove_server_by_name(%Lookup{entries: entries} = lookup, name) do
+    next_entries =
+      Enum.filter(entries, fn
+        %ServerInfo{name: ^name} -> false
+        _ -> true
+      end)
+
+    %Lookup{lookup | entries: next_entries}
+  end
 end

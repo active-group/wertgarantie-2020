@@ -27,9 +27,18 @@ defmodule DnsServer.LookupProcess do
     GenServer.cast(identifier, {:put, entry})
   end
 
+  def remove_server_by_name(identifier, name) do
+    GenServer.cast(identifier, {:remove_server_by_name, name})
+  end
+
   def handle_call({:best_matching, url}, _from, lookup) do
     matches = Lookup.best_matching(lookup, url)
     {:reply, matches, lookup}
+  end
+
+  def handle_cast({:remove_server_by_name, name}, lookup) do
+    next_lookup = Lookup.remove_server_by_name(lookup, name)
+    {:noreply, next_lookup}
   end
 
   def handle_cast({:put, entry}, lookup) do
