@@ -91,12 +91,6 @@ defmodule Contracts do
     )
   end
 
-  def bsp() do
-    v1 =
-      der_vertrag(100, :EUR, ~N[2020-10-30 12:00:00], 100, :USD, ~N[2020-10-30 13:00:00])
-      |> scale(100)
-  end
-
   defmodule Payout do
     @moduledoc """
     Eine Auszahlung besteht aus dem Datum der Auszahlung, einem Betrag, und einer Währung.
@@ -126,14 +120,37 @@ defmodule Contracts do
     {[%Payout{datetime: datetime, currency: currency, amount: 1}], %Zero{}, datetime}
   end
 
-  def evaluate(%Scale{amount: amount, contract: contract}, datetime) do
+  def evaluate(%Scale{amount: scale_amount, contract: contract}, datetime) do
     {next_payouts, next_contract, next_datetime} = evaluate(contract, datetime)
 
     next_payouts =
-      Enum.map(next_payouts, fn %Payout{amount: real_amount} = p ->
-        %Payout{p | amount: real_amount * amount}
+      Enum.map(next_payouts, fn %Payout{amount: amount} = p ->
+        %Payout{p | amount: amount * scale_amount}
       end)
 
-    {next_payouts, scale(next_contract, amount), next_datetime}
+    {next_payouts, scale(next_contract, scale_amount), next_datetime}
+  end
+
+  def evaluate(%At{contract: contract, date: datetime} = outer_contract, current_datetime) do
+    case NaiveDateTime.compare(current_datetime, datetime) do
+      :lt ->
+        {[], outer_contract, datetime}
+
+      _ ->
+        evaluate(contract, current_datetime)
+    end
+  end
+
+  def evaluate(%And{contract1: c1, contract2: c2}, datetime) do
+    {payouts1, rest_contract1, datetime1} = evaluate(c1, datetime)
+    {payouts2, rest_contract2, datetime2} = evaluate(c2, datetime)
+
+    earlier_date =
+      case NaiveDateTime.compare(datetime1, datetime2) do
+        :lt -> datetime1
+        :gt -> datetime2
+      end
+
+    {payouts1 ++ payouts2, und(rest_contract1, rest_contract2), earlier_date}
   end
 end
