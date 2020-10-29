@@ -90,4 +90,50 @@ defmodule Contracts do
       zcb(amount2, currency2, date2)
     )
   end
+
+  def bsp() do
+    v1 =
+      der_vertrag(100, :EUR, ~N[2020-10-30 12:00:00], 100, :USD, ~N[2020-10-30 13:00:00])
+      |> scale(100)
+  end
+
+  defmodule Payout do
+    @moduledoc """
+    Eine Auszahlung besteht aus dem Datum der Auszahlung, einem Betrag, und einer Währung.
+    Der Betrag kann positiv sein, das bedeutet, ich erhalte etwas, er kann aber auch negativ sein,
+    das bedeutet, der Vertragspartner erhält etwas von mir.
+    """
+
+    use QuickStruct,
+      datetime: NaiveDateTime.t(),
+      amount: Contracts.amount_t(),
+      currency: Contracts.currency_t()
+  end
+
+  @doc """
+  Nimmt einen Vertrag und ein Datum entgegen und wertet den Vertrag an diesem Zeitpunkt aus.
+  Gibt eine Liste von Auszahlungen, einen Restvertrag und den nächsten Zeitpunkt zurück, an dem
+  dieser Restvertrag eine Auszahlung vornimmt.
+  """
+  @spec evaluate(contract_t(), NaiveDateTime.t()) ::
+          {[Payout.t()], contract_t(), NaiveDateTime.t()}
+
+  def evaluate(%Zero{}, datetime) do
+    {[], zero(), datetime}
+  end
+
+  def evaluate(%One{currency: currency}, datetime) do
+    {[%Payout{datetime: datetime, currency: currency, amount: 1}], %Zero{}, datetime}
+  end
+
+  def evaluate(%Scale{amount: amount, contract: contract}, datetime) do
+    {next_payouts, next_contract, next_datetime} = evaluate(contract, datetime)
+
+    next_payouts =
+      Enum.map(next_payouts, fn %Payout{amount: real_amount} = p ->
+        %Payout{p | amount: real_amount * amount}
+      end)
+
+    {next_payouts, scale(next_contract, amount), next_datetime}
+  end
 end
